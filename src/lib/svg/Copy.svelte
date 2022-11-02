@@ -1,5 +1,0 @@
-<script>export let size = 32; export let color = "currentColor"; export let className = "mb-2"; </script>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="{color}" width="{size}" height="{size}" class={className}>
-<title>copy</title>
-<path d="M20 8v-8h-14l-6 6v18h12v8h20v-24h-12zM6 2.828v3.172h-3.172l3.172-3.172zM2 22v-14h6v-6h10v6l-6 6v8h-10zM18 10.828v3.172h-3.172l3.172-3.172zM30 30h-16v-14h6v-6h10v20z"></path>
-</svg>
