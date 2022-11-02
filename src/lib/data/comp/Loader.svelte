@@ -1,0 +1,64 @@
+<div
+  class="absolute flex flex-col inset-0 items-center justify-center text-7xl text-gray-400"
+>
+  <i class="gg-spinner" />
+</div>
+
+<style>
+  div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 7rem;
+    z-index: 2000;
+  }
+  .gg-spinner {
+    --ggs: 6;
+  }
+  .gg-spinner {
+    transform: scale(var(--ggs, 1));
+  }
+
+  .gg-spinner,
+  .gg-spinner::after,
+  .gg-spinner::before {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+
+  .gg-spinner::after,
+  .gg-spinner::before {
+    content: "";
+    position: absolute;
+    border-radius: 100px;
+  }
+
+  .gg-spinner::before {
+    animation: spinner 1s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+    border: 3px solid transparent;
+    border-top-color: currentColor;
+  }
+
+  .gg-spinner::after {
+    border: 3px solid;
+    opacity: 0.2;
+  }
+
+  @keyframes spinner {
+    0% {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+</style>

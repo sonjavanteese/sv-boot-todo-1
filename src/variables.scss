@@ -1,0 +1,17 @@
+/* Variables and mixins declared here will be available in all other SCSS files */
+@import "bootstrap/scss/functions";
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+// $component-active-color:      #333333;
+// $component-active-bg:         $gray-100 !default;
+// $border-color:                $gray-100 !default;
+$link-decoration:                         none !default;
+
+
+/* Override Bootstrap's variables here */
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
