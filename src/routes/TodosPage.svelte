@@ -1,4 +1,5 @@
 <script>
+import TabBar from '../lib/components/TabBar.svelte';
 import { _user, supabase, navData } from "../lib/data";
 import Page from "../lib/components/Page.svelte";
 import Router, { link } from "svelte-spa-router";
@@ -6,7 +7,7 @@ import active from "svelte-spa-router/active";
 import TodosAdd from "./_comp/TodosAdd.svelte";
 import TodosEdit from "./_comp/TodosEdit.svelte";
 import TodosList from "./_comp/TodosList.svelte";
-
+import NwpLogo from "../lib/components/_NwpLogo.svelte";
 const prefix = "/app/todos";
 const routes = {
     "/edit/": TodosEdit,
@@ -58,16 +59,18 @@ const tabs = [
 </script>
 
 <Page>
-<nav class="nav nav-tabs justify-content-end pt-3 px-3 px-md-5 mb-3"> 
-  {#each tabs as { label, disabled, icon, path }}
-    <a href={path} class="nav-link" use:link use:active class:disabled={disabled}>
-      {label}
-    </a>
-  {/each}
-</nav>
+<TabBar></TabBar>
 
 <div class="flex-grow-1">
   <Router {routes} {prefix} />
   
 </div>
 </Page>
+
+
+<style>
+  :root {
+    --bs-link-color: #4b5563;
+  --bs-link-hover-color: #374151;
+}
+</style>

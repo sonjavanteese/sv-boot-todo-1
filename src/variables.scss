@@ -4,10 +4,20 @@
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
+$white:    #fff !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
 // $component-active-color:      #333333;
 // $component-active-bg:         $gray-100 !default;
 // $border-color:                $gray-100 !default;
 $link-decoration:                         none !default;
+
+// --bs-modal-header-padding-x: 1rem;
+$modal-header-padding-x: 1rem;
+$modal-header-padding-y: .5rem;
+$component-active-color:      $white !default;
+$component-active-bg:         $gray-600 !default;
 
 
 /* Override Bootstrap's variables here */

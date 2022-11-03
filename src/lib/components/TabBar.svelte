@@ -1,24 +1,13 @@
 <script>
-import { _user, supabase, navData } from "../lib/data";
-import Page from "../lib/components/Page.svelte";
-import Router, { link } from "svelte-spa-router";
+import NwpLogo from "./_NwpLogo.svelte";
+import { link } from "svelte-spa-router";
 import active from "svelte-spa-router/active";
-import SetForm from "./_comp/SetForm.svelte";
-import UserProfil from "./_comp/UserProfil.svelte";
-import EditProfil from "./_comp/EditProfil.svelte";
-
-const prefix = "/settings";
-const routes = {
-    "/edit/": EditProfil,
-    "/profil/": UserProfil,
-    "*": SetForm,
-};
-const tabs = [
+export let tabs = [
     {
         id: "tab1",
-        label: "App",
+        label: "View",
         icon: "list",
-        path: "/settings/",
+        path: "/app/todos/",
         disabled: false,
         component: false,
         meta: {
@@ -29,9 +18,9 @@ const tabs = [
     },
     {
         id: "tab2",
-        label: "User",
+        label: "Edit",
         icon: "edit",
-        path: "/settings/edit/",
+        path: "/app/todos/edit/",
         disabled: false,
         component: false,
         meta: {
@@ -42,24 +31,26 @@ const tabs = [
     },
     {
         id: "tab3",
-        label: "Profil",
-        icon: "list",
-        path: "/settings/profil/",
+        label: "Add",
+        icon: "add",
+        path: "/app/todos/add/",
         disabled: false,
         component: false,
         meta: {
             titel: "Nwp-Studio",
-            body: "List View",
+            body: "Add",
             file: "https://nwp-cgn.de/img/poser/imgA02.png",
         },
     },
-
 ];
-
 </script>
 
-<Page>
-<nav class="nav nav-tabs justify-content-end pt-3 px-3 px-md-5 mb-3"> 
+<nav class="nav nav-tabs justify-content-endx pt-3 ps-2 pe-4 mb-3"> 
+  <li class="me-auto nav-item">
+    <a href="#/">
+      <NwpLogo height="32" />
+  </a>
+</li>
   {#each tabs as { label, disabled, icon, path }}
     <a href={path} class="nav-link" use:link use:active class:disabled={disabled}>
       {label}
@@ -67,8 +58,10 @@ const tabs = [
   {/each}
 </nav>
 
-<div class="flex-grow-1">
-  <Router {routes} {prefix} />
-  
-</div>
-</Page>
+<style>
+:root {
+--bs-link-color: #4b5563;
+--bs-link-hover-color: #374151;
+}
+</style>
+

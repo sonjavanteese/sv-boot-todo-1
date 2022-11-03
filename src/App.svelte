@@ -56,3 +56,10 @@
       <span>Paragraph</span>
   </div>
 </footer>
+<style>
+  :root {
+  --bs-link-color: #4b5563;
+  --bs-link-hover-color: #374151;
+  }
+</style>
+

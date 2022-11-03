@@ -1,9 +1,9 @@
 <script>
-	import Loader from '../../lib/data/comp/Loader.svelte';
-  import MobilView from '../../lib/components/MobilView.svelte';
+  import { f_user, f_url, f_link } from "./svg";
+  import Loader from "../../lib/data/comp/Loader.svelte";
+  import MobilView from "../../lib/components/MobilView.svelte";
   import FetchProfil from "./FetchProfil.svelte";
   import { _user, _settings, supabase } from "../../lib/data";
-  
   let un, uw, ui;
   let loading, promise;
 
@@ -51,98 +51,97 @@
 </script>
 
 <MobilView>
-<div class="">
-  <FetchProfil bind:promise bind:loading let:payload>
+  <div class="">
+    <FetchProfil bind:promise bind:loading let:payload>
+      {#await promise}
+        <Loader />
+      {:then payload}
+        <slot {payload}><!-- optional fallback --></slot>
+      {/await}
 
-    {#await promise}
-    <Loader />
-  {:then payload}
-    <slot {payload}><!-- optional fallback --></slot>
-  {/await}
-  
-
-
-
-    <div class="card">
-      {#if payload.img_url && payload.img_url !== ''}
-      <div class="py-3 border-bottom">
-        <img
-          src={payload.img_url}
-          class="card-img-top mx-auto"
-          alt="avatar"
-          width="150"
-          height="150"
-          style="object-fit: contain;"
-        />
-      </div>
-      {/if}
-      
-      <div class="card-body">
-        <form class="row g-2" on:submit|preventDefault={updateProfile}>
-          <div class="col-sm-6">
-            <label for="uid" class="form-label">UID</label>
-            <input
-              type="text"
-              class="form-control"
-              id="uid"
-              value={$_user.id}
-              disabled
+      <div class="card">
+        {#if payload.img_url && payload.img_url !== ""}
+          <div class="py-3 border-bottom">
+            <img
+              src={payload.img_url}
+              class="card-img-top mx-auto"
+              alt="avatar"
+              width="150"
+              height="150"
+              style="object-fit: contain;"
             />
           </div>
-          <div class="col-sm-6">
-            <label for="inputAddress" class="form-label">Username</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputAddress"
-              placeholder="Name"
-              value={payload.username ? payload.username : ""}
-              on:change={(e) => {
-                un = e.currentTarget.value;
-              }}
-            />
-          </div>
-          <div class="col-sm-6">
-            <label for="inputAddress2" class="form-label">Website</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputAddress2"
-              placeholder="https://"
-              value={payload.website ? payload.website : ""}
-              on:change={(e) => {
-                uw = e.currentTarget.value;
-              }}
-            />
-          </div>
-          <div class="col-sm-6">
-            <label for="inputCity" class="form-label">Avatar Url</label>
-            <input
-              type="text"
-              class="form-control"
-              id="inputCity"
-              placeholder="https://"
-              value={payload.img_url ? payload.img_url : ""}
-              on:change={(e) => {
-                ui = e.currentTarget.value;
-              }}
-            />
-          </div>
-              <div class="col-12 py-4">
-            <div class="d-grid g-2">
-              <button type="submit" class="btn btn-primary">Save Setings</button
-              >
+        {/if}
+
+        <div class="card-body plain" class:edit={$_settings.op8}>
+          <form class="" on:submit|preventDefault={updateProfile}>
+   
+            <div class="input-group mb-2" class:input-group-lg={$_settings.op7}>
+              <span class="input-group-text">
+                <span>{@html f_user}</span>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                value={payload.username ? payload.username : ""}
+                on:change={(e) => {
+                  un = e.currentTarget.value;
+                }}
+              />
             </div>
-          </div>
-        </form>
+            <div class="input-group mb-2" class:input-group-lg={$_settings.op7}>
+              <span class="input-group-text">
+                <span>{@html f_url}</span>
+              </span>
+              <input
+                type="url"
+                class="form-control"
+                placeholder="https://"
+                value={payload.website ? payload.website : ""}
+                on:change={(e) => {
+                  uw = e.currentTarget.value;
+                }}
+              />
+            </div>
+            <div class="input-group mb-2" class:input-group-lg={$_settings.op7}>
+              <span class="input-group-text"><span>{@html f_link}</span></span>
+              <input
+                type="url"
+                class="form-control"
+                placeholder="https://"
+                value={payload.img_url ? payload.img_url : ""}
+                on:change={(e) => {
+                  ui = e.currentTarget.value;
+                }}
+              />
+            </div>
+
+            <div class="col-12 py-4">
+              <div class="d-grid g-2">
+                <button type="submit" class="btn btn-primary"
+                  >Save Setings</button
+                >
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
-  </FetchProfil>
-</div>
+    </FetchProfil>
+  </div>
+ 
 </MobilView>
 
 <style>
   label {
     font-size: 0.8rem;
+  }
+  .plain .input-group-text,
+  .plain .form-control {
+    border-color: #fff;
+  }
+  .plain.edit .input-group-text,
+  .plain.edit .form-control {
+    border-color: #dddddd;
   }
 </style>
