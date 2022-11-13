@@ -1,35 +1,55 @@
 <script>
   import { _user } from "../lib/data";
-  import Page from "../lib/components/Page.svelte";
-  import { image1 } from "./_comp";
-  export let page = { header: null, body: null, sub: null };
-  let { header, body, sub } = page;
+  import Profil from "./_comp/Profil.svelte";
+  export let titel = "Nwp-Studio";
+  export let sub = "Application";
+  export let bg =
+    "https://nwp-cgn.de/studio/upload/kat11/server/php/files/jc1.png";
+  export let bg_size = "cover";
 </script>
 
-<Page>
-  <section class="flex-grow-1 bg-dark text-light">
-    <div class="container-xxl">
-      <div class="align-items-center row">
-        <div class="col-lg-6 order-lg-last p-0">
-          <!-- {@html image1} -->
-          <img src="https://nwp-cgn.de/studio/upload/kat11/server/php/files/id_card.png" class="img-fluid" alt="">
-        </div>
-        <div class="col-lg-6 pb-5 pe-4 pe-sm-5 ps-4 ps-sm-5 pt-5">
-          <p class="h6 text-primary text-uppercase fst-italic fw-semibold mb-3">{header ? header : 'The Latest'}</p>
-          <h1 class="display-4 fw-bold mb-3">{body ? body : 'The Natural Experience'}</h1>
-          <p class="fw-light lead mb-4">{sub ? sub : 'Our ability to feel, act and communicate is indistinguishable from magic.'}</p>
-          <a href="#/app/todos/" class="btn btn-primary pb-2 pe-4 ps-4 pt-2"
+<section
+  style="background-image: url({bg}); background-size: {bg_size}; background-repeat: no-repeat;"
+>
+  <header class="container p-5">
+    <h2 class="display-4">
+      {titel}
+    </h2>
+    <p class="fs-5">{sub}</p>
+    <div class="py-2">
+      {#if $_user}
+        <div class="mb-2">
+          <a class="btn btn-dark btn-lg" href="/data" role="button"
             >Start Application</a
           >
         </div>
-      </div>
+        <div>
+          <a class="btn btn-link btn-lg" href="/user" role="button">User Panel</a>
+        </div>
+      {:else}
+        <div>
+          <a class="btn btn-dark btn-lg" href="/login" role="button">Anmelden</a>
+        </div>
+      {/if}
     </div>
-  </section>
-</Page>
+  </header>
+
+</section>
 
 <style>
-  /*  .add-todo {
+  section {
+    flex: 1;
+    height: 100%;
+    width: 100%;
     display: flex;
-    margin-bottom: 0.5em;
-  } */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  header {
+    background-color: rgba(0, 0, 0, 0.25);
+    color: white;
+    border-radius: 1rem;
+  }
 </style>

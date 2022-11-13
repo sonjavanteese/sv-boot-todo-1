@@ -1,5 +1,5 @@
 <script>
-  import { fade } from "svelte/transition";
+ 
   // import { createEventDispatcher } from "svelte";
   // const dispatch = createEventDispatcher();
   export let center = false;
@@ -9,7 +9,6 @@
 </script>
 
 <section
-  in:fade={{ duration: 300 }}
   class="page-container"
   class:centered={center}
 >

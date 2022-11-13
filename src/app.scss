@@ -20,9 +20,9 @@
 
 @import "bootstrap/scss/transitions";
 
-@import "bootstrap/scss/dropdown";
+// @import "bootstrap/scss/dropdown";
 
-@import "bootstrap/scss/button-group";
+// @import "bootstrap/scss/button-group";
 
 @import "bootstrap/scss/nav";
 
@@ -30,37 +30,37 @@
 
 @import "bootstrap/scss/card";
 
-@import "bootstrap/scss/accordion";
+// @import "bootstrap/scss/accordion";
 
-@import "bootstrap/scss/breadcrumb";
+// @import "bootstrap/scss/breadcrumb";
 
-@import "bootstrap/scss/pagination";
+// @import "bootstrap/scss/pagination";
 
-@import "bootstrap/scss/badge";
+// @import "bootstrap/scss/badge";
 
 @import "bootstrap/scss/alert";
 
-@import "bootstrap/scss/progress";
+// @import "bootstrap/scss/progress";
 
 @import "bootstrap/scss/list-group";
 
 @import "bootstrap/scss/close";
 
-@import "bootstrap/scss/toasts";
+// @import "bootstrap/scss/toasts";
 
 @import "bootstrap/scss/modal";
 
-@import "bootstrap/scss/tooltip";
+// @import "bootstrap/scss/tooltip";
 
-@import "bootstrap/scss/popover";
+// @import "bootstrap/scss/popover";
 
-@import "bootstrap/scss/carousel";
+// @import "bootstrap/scss/carousel";
 
 @import "bootstrap/scss/spinners";
 
-@import "bootstrap/scss/offcanvas";
+// @import "bootstrap/scss/offcanvas";
 
-@import "bootstrap/scss/placeholders";
+// @import "bootstrap/scss/placeholders";
 
 @import "bootstrap/scss/helpers";
 
@@ -151,3 +151,40 @@ label.form-switch {
     --bs-link-color: #4b5563;
   --bs-link-hover-color: #374151;
 } */
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    color: var(--bs-gray-800);
+  }
+
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .form-signin .form-control:focus {
+    z-index: 2;
+  }
+
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }

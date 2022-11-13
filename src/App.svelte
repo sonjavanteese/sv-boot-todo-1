@@ -1,18 +1,26 @@
 <script>
-  import { onMount } from "svelte";
-  import Router from "svelte-spa-router";
-  import { push, location } from "svelte-spa-router";
-  import routes from "./_routes";
+  import { pageData, _user, supabase, sleep } from "./lib/data";
+  import { Route, router } from "tinro";
+  import NotFound from "./routes/NotFound.svelte";
   import TopBar from "./lib/components/TopBar.svelte";
   import Iconlib from "./lib/components/Iconlib.svelte";
-  import { _user, _settings, supabase, sleep } from "./lib/data";
-  let open;
-  const changeAuth = async (user = null, delay = 2000) => {
+  import Transition from "./lib/components/Transition.svelte";
+  import StartPage from "./routes/StartPage.svelte";
+  import DataPage from "./routes/DataPage.svelte";
+  import SettingsPage from "./routes/SettingsPage.svelte";
+  import UserPage from "./routes/UserPage.svelte";
+  import SignIn from "./lib/components/SignIn.svelte";
+  import Header from "./lib/components/Header.svelte";
+  import Page from "./lib/components/Page.svelte";
+  import { onMount } from "svelte";
+  import SignUp from "./lib/components/SignUp.svelte";
+  router.mode.hash();
+
+  const changeAuth = async (user = null, delay = 1000) => {
     // console.log("changeAuth to ", user ? true : false);
     await sleep(delay);
     if (user) {
       _user.set(user);
-      push("/");
     } else {
       _user.set(null);
     }
@@ -32,34 +40,64 @@
       changeAuth(null);
     }
   });
-  const conditionsFailed = (event) => {
-    console.error("Conditions Failed !! Sign In");
-    console.log("Auth Error", event);
-    push("/login");
-  };
-
-  $: if (!$_user) {
-    push("/login");
-  }
 </script>
-
-<Iconlib />
 
 <TopBar />
 
-<main class="flex-grow-1">
-  <Router {routes} on:conditionsFailed={conditionsFailed} />
-</main>
+<Transition>
+  <Route path="/">
+    <Page>
+      <!-- <Header page={pageData[0]}>
+      <div>
+        <a class="btn btn-primary" href="/data" role="button">Application</a>
+      </div>
+      </Header> -->
+      <StartPage {...pageData[0]} />
+    </Page>
+  </Route>
+  {#if $_user}
+    <Route path="/data">
+      <Page>
+        <Header {...pageData[1]} />
+        <DataPage />
+      </Page>
+    </Route>
+    <Route path="/settings">
+      <Page>
+        <Header {...pageData[2]} />
+        <SettingsPage />
+      </Page>
+    </Route>
+    <Route path="/user">
+      <Page>
+        <Header {...pageData[3]} />
+        <UserPage />
+      </Page>
+    </Route>
+    <Route path="/login" redirect="/" />
+    <Route path="/signup" redirect="/" />
+  {:else}
+    <Route path="/data" redirect="/login" />
+    <Route path="/user" redirect="/login" />
+    <Route path="/settings" redirect="/login" />
+    <Route path="/login">
+      <Page center>
+        <SignIn />
+      </Page>
+    </Route>
+    <Route path="/signup">
+      <Page center>
+        <SignUp />
+      </Page>
+    </Route>
+  {/if}
 
-<footer class="bg-light border-top mt-auto">
-  <div class="container pb-1 pt-1 text-center text-muted">
-      <span>Paragraph</span>
-  </div>
-</footer>
+  <Route fallback>
+    <NotFound />
+  </Route>
+</Transition>
+
+<Iconlib />
+
 <style>
-  :root {
-  --bs-link-color: #4b5563;
-  --bs-link-hover-color: #374151;
-  }
 </style>
-

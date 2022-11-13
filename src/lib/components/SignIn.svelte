@@ -1,7 +1,8 @@
 <script>
-  import { _user, supabase } from "../lib/data";
+  import { _user, supabase, sleep } from "../data";
   let email, password, loading;
-  let header = "Sign In";
+  let header = "Einloggen";
+  let label = "Login";
   const signIn = async () => {
     loading = true;
     try {
@@ -9,16 +10,18 @@
         email,
         password,
       });
+      if (error) throw error;
     } catch (error) {
       alert("Error Login!");
     } finally {
+      await sleep(800);
       loading = false;
     }
   };
 </script>
 
 
-<section>
+<section {...$$restProps}>
   <form class="form-signin text-center" on:submit|preventDefault={signIn}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -57,46 +60,19 @@
     />
     <div class="mb-3" />
     <button class="w-100 btn btn-lg btn-primary" type="submit"
-      >{!loading ? "Sign in" : "...loading"}</button
+      >{!loading ? label : "...loading"}</button
     >
-    <p class="mt-4 mb-3 text-muted">©nwp-studio</p>
+    <button class="w-100 btn btn-link" type="reset"
+      >Clear</button
+    >
+    <p class="mt-3 mb-3">©nwp-studio <a href="/signup" class="text-center">Anmelden</a></p>
+    
   </form>
 </section>
 
 <style>
-  .form-signin {
+  section {
     width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
   }
 
-  .form-signin .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-  }
-
-  .form-signin .form-control:focus {
-    z-index: 2;
-  }
-
-  .form-signin input[type="email"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
-
-  .form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
 </style>

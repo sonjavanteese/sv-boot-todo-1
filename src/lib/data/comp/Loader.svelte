@@ -1,11 +1,16 @@
-<div
-  class="absolute flex flex-col inset-0 items-center justify-center text-7xl text-gray-400"
->
+<script>
+  import { fade } from "svelte/transition";
+</script>
+
+<aside transition:fade={{ duration: 250 }}>
   <i class="gg-spinner" />
-</div>
+</aside>
 
 <style>
-  div {
+  :root {
+    --ggs: 9;
+  }
+  aside {
     position: fixed;
     top: 0;
     left: 0;
@@ -15,12 +20,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 7rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     z-index: 2000;
   }
-  .gg-spinner {
-    --ggs: 6;
-  }
+  /* .gg-spinner {
+    --ggs: 8;
+  } */
   .gg-spinner {
     transform: scale(var(--ggs, 1));
   }

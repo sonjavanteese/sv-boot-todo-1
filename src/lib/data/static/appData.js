@@ -2,57 +2,59 @@ export const appData = [
   {
     "id": 0,
     "slug": "start",
+    "head": {
+      "titel": "Nwp-App",
+      "sub": "App-Viewer",
+      "bg": "https://nwp-cgn.de/studio/upload/kat11/server/php/files/jc1.png"
+    },
     "link": {
       "path": "/",
       "name": "Start",
-      "icon": "code"
-    },
-    "head": {
-      "titel": "Nwp-Studio",
-      "sub": "Startseite",
-      "bg": "https://nwp-cgn.de/img/poser/imgA09.png"
+      "hidden": true,
+      "icon": "home"
     }
   },
   {
     "id": 1,
-    "slug": "user",
+    "slug": "main",
     "head": {
-      "titel": "Nwp-Studio",
-      "sub": "User-Profil",
-      "bg": "https://nwp-cgn.de/img/poser/imgA03.png"
+      "titel": "Todos Application",
+      "sub": "Private Todo List",
+      "bg": "https://nwp-cgn.de/studio/upload/kat11/server/php/files/jc3.png"
     },
     "link": {
-      "path": "/user",
-      "name": "User",
-      "icon": "user"
+      "path": "/data",
+      "name": "Todos",
+      "icon": "db"
     }
   },
   {
     "id": 2,
-    "slug": "edit",
-    "head": {
-      "titel": "Nwp-Studio",
-      "sub": "Edit Profil",
-      "bg": "https://nwp-cgn.de/img/poser/imgA06.png"
-    },
-    "link": {
-      "path": "/edit",
-      "name": "Profil",
-      "icon": "user"
-    }
-  },
-  {
-    "id": 3,
     "slug": "settings",
     "head": {
-      "titel": "Nwp-Studio",
-      "sub": "Settings",
-      "bg": "https://nwp-cgn.de/img/poser/imgA04.png"
+      "titel": "App-Settings",
+      "sub": "Options and Settings",
+      "bg": "https://nwp-cgn.de/studio/upload/kat11/server/php/files/jc4.png"
     },
     "link": {
       "path": "/settings",
       "name": "Settings",
       "icon": "settings"
+    }
+  },
+  {
+    "id": 3,
+    "slug": "user",
+    "head": {
+      "titel": "User-Panel",
+      "sub": "Profil",
+      "bg": "https://nwp-cgn.de/studio/upload/kat11/server/php/files/jc6.png"
+    },
+    "link": {
+      "path": "/user",
+      "name": "User",
+      "icon": "user",
+      "hidden": false
     }
   }
 ];  
